@@ -2,7 +2,7 @@
 <template>
   <div class="container">
     <h2>Análise de Água</h2>
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="submitForm">
 
       <!-- Perguntas com checkboxes -->
       <div class="question" v-for="(question, index) in questions" :key="index">
@@ -60,7 +60,10 @@
         </tbody>
       </table>
 
-      <button type="submit">Enviar</button>
+      <!-- <button type="submit">Enviar</button> -->
+      <div class="form-group">
+        <button type="submit">SubmEnviarit</button>
+      </div>
     </form>
   </div>
 </template>
@@ -231,14 +234,15 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    async submitForm() {
       try {
-        const response = await axios.post('/endpoint-do-backend', this.formData);
-        console.log(response.data);
+        const response = await axios.post('https:api/agua/tipo_agua/', this.formData);
+        // Lidar com a resposta aqui, se necessário
+        console.log('Formulário enviado com sucesso:', response.data);
       } catch (error) {
-        console.error('Erro ao enviar dados para o backend:', error);
+        console.error('Erro ao enviar o formulário:', error);
       }
-    }
+    },
   }
 };
 </script>

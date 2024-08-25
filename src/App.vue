@@ -1,20 +1,35 @@
 <!-- src/App.vue -->
+<!-- src/App.vue -->
 <template>
   <div id="app">
-    <WaterAnalysisForm />
+    <PresentationScreen v-if="showPresentation" @start="startApplication" />
+    <WaterAnalysisForm v-else />
   </div>
 </template>
 
 <script>
 import WaterAnalysisForm from './components/WaterAnalysisForm.vue';
+import PresentationScreen from './components/PresentationScreen.vue';
 
 export default {
   name: 'App',
   components: {
-    WaterAnalysisForm
+    WaterAnalysisForm,
+    PresentationScreen
+  },
+  data() {
+    return {
+      showPresentation: true
+    };
+  },
+  methods: {
+    startApplication() {
+      this.showPresentation = false;
+    }
   }
 };
 </script>
+
 
 <style>
  body {
